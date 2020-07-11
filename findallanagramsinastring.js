@@ -43,10 +43,51 @@ while (end <= s.length) {
         }
     }
     
+    //Check if the two hashmaps are the same
     if (_.isEqual(sMap, map)) {
         result.push(start)
     }
     
+    start++
+    end++
+}
+
+return result
+
+
+//O(n_s + n_p) solution that uses an array as a 'keylock' to check every character
+
+let result = []
+let charArray = new Array(26).fill(0)
+
+for (let i = 0; i < p.length; i++) {
+    charArray[p.charCodeAt(i) - 97]++
+}
+
+let temp = charArray.slice(0)
+
+let start = 0
+let end = p.length
+
+while (end <= s.length) {
+    let substring = s.substring(start, end)
+    let temp = charArray.slice(0)
+
+    for (let i = 0; i < substring.length; i++) {
+        temp[substring.charCodeAt(i) - 97]--
+    }
+
+    let zeroes = true
+    for (let i = 0; i < temp.length; i++) {
+        if (temp[i] !== 0) {
+            zeroes = false
+        }
+    }
+
+    if (zeroes) {
+        result.push(start)
+    }
+
     start++
     end++
 }
