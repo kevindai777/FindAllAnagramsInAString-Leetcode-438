@@ -64,8 +64,6 @@ for (let i = 0; i < p.length; i++) {
     charArray[p.charCodeAt(i) - 97]++
 }
 
-let temp = charArray.slice(0)
-
 let start = 0
 let end = p.length
 
